@@ -1,0 +1,5 @@
+{
+  "name": "Computer Institute Management System",
+  "description": "A management system for computer training institutes to track students, courses, fees, and attendance.",
+  "requestFramePermissions": []
+}

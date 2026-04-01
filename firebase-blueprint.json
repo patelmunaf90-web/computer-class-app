@@ -1,0 +1,79 @@
+{
+  "entities": {
+    "Student": {
+      "title": "Student",
+      "description": "Student information",
+      "type": "object",
+      "properties": {
+        "uid": { "type": "string" },
+        "name": { "type": "string" },
+        "email": { "type": "string" },
+        "phone": { "type": "string" },
+        "courseId": { "type": "string" },
+        "feesPaid": { "type": "number" },
+        "feesTotal": { "type": "number" },
+        "batch": { "type": "string", "enum": ["A", "B", "C", "D"] }
+      },
+      "required": ["uid", "name", "email"]
+    },
+    "Course": {
+      "title": "Course",
+      "description": "Course details",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string" },
+        "name": { "type": "string" },
+        "duration": { "type": "string" },
+        "fee": { "type": "number" }
+      },
+      "required": ["id", "name"]
+    },
+    "Payment": {
+      "title": "Payment",
+      "description": "Payment history record",
+      "type": "object",
+      "properties": {
+        "studentId": { "type": "string" },
+        "studentName": { "type": "string" },
+        "rollNo": { "type": "string" },
+        "course": { "type": "string" },
+        "amount": { "type": "number" },
+        "receiptNo": { "type": "string" },
+        "timestamp": { "type": "object" },
+        "date": { "type": "string" }
+      },
+      "required": ["studentId", "amount", "receiptNo"]
+    },
+    "InstituteSettings": {
+      "title": "Institute Settings",
+      "description": "Global settings for the institute",
+      "type": "object",
+      "properties": {
+        "name": { "type": "string" },
+        "address": { "type": "string" },
+        "phone": { "type": "string" },
+        "directorName": { "type": "string" },
+        "logoUrl": { "type": "string" }
+      },
+      "required": ["name"]
+    }
+  },
+  "firestore": {
+    "/students/{studentId}": {
+      "schema": { "$ref": "Student" },
+      "description": "Collection of students"
+    },
+    "/courses/{courseId}": {
+      "schema": { "$ref": "Course" },
+      "description": "Collection of courses"
+    },
+    "/payments/{paymentId}": {
+      "schema": { "$ref": "Payment" },
+      "description": "Collection of payment records"
+    },
+    "/settings/institute": {
+      "schema": { "$ref": "InstituteSettings" },
+      "description": "Institute global settings document"
+    }
+  }
+}
